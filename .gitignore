@@ -1,0 +1,51 @@
+# Global ignores
+node_modules/
+.env
+.env.local
+*.log
+*.tsbuildinfo
+.DS_Store
+
+# Frontend specific
+client/node_modules/
+client/.next/
+client/.env
+
+# Backend specific
+server/node_modules/
+server/dist/
+server/.env
+
+# Node modules
+node_modules/
+
+# Build output
+dist/
+build/
+
+# TypeScript cache
+*.tsbuildinfo
+
+# Logs
+logs/
+*.log
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+
+# Environment variables
+.env
+.env.local
+.env.*.local
+
+# Prisma
+prisma/dev.db
+prisma/dev.db-journal
+
+# IDE/Editor stuff
+.vscode/
+.idea/
+.DS_Store
+
+# OS files
+Thumbs.db
