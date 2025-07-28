@@ -1,5 +1,5 @@
-import SignIn from '../components/SignIn';
+import SignupPage from '../app/Signup/page';
 
 export default function HomePage() {
-  return <SignIn />;
+  return <SignupPage />;
 }

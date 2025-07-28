@@ -10,7 +10,7 @@ import userinfoRoute from './routes/userinfo.js';
 const app = express();
 app.use(cors(
     {
-        origin: 'http://localhost:3000', //Client/React front end dev server 
+        origin: 'http://localhost:3000', 
         credentials: true
     }
 ));
