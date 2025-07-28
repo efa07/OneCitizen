@@ -49,7 +49,7 @@ By the end of the hackathon, OneCitizen will:
 ## 🧰 Tech Stack
 
 ### 🔧 Backend
-- **Node.js (Fastify)** – RESTful API development
+- **Node.js (express)** – RESTful API development
 - **Prisma ORM** – Database modeling and access
 - **PostgreSQL** – Relational database for citizen and service data
 - **JWT** – Token-based session management
@@ -65,6 +65,7 @@ By the end of the hackathon, OneCitizen will:
 ### ☁️ Hosting/DevOps
 - **Vercel** – Frontend deployment
 - **Render** – Backend + PostgreSQL hosting
+- **Neon** - serverless Postgres DB
 
 ### 🪪 Fayda’s Role
 
