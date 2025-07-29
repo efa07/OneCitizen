@@ -49,41 +49,41 @@ const data = {
       items: [
         {
           title: "Local Services",
-          url: "/local-services",
+          url: "/dashboard/local-services",
         },
         {
           title: "My Fayda Info",
-          url: "/fayda",
+          url: "/dashboard/fayda",
         },
         {
           title: "Vital Records",
-          url: "/vital-records",
+          url: "/dashboard/vital-records",
         },
         {
           title: "Health",
-          url: "/health",
+          url: "/dashboard/health",
         },
         {
           title: "Education",
-          url: "/education",
+          url: "/dashboard/education",
         },
         {
           title: "Taxes",
-          url: "/taxes",
+          url: "/dashboard/taxes",
         },
         {
           title: "Apply for a Service",
-          url: "/service-request",
+          url: "/dashboard/service-request",
         },
         {
           title: "Elections",
-          url: "/elections",
+          url: "/dashboard/elections",
         },
       ],
     },
     {
       title: "Messages",
-      url: "/messages",
+      url: "/dashboard/messages",
       icon: Inbox,
       items: [],
     },
