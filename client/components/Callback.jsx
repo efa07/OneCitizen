@@ -11,31 +11,65 @@ import {
 } from '@/components/ui/card';
 import { Avatar, AvatarImage } from '@/components/ui/avatar';
 import { Label } from '@/components/ui/label';
+import { useUserStore } from "@/lib/stores/userStore"
 
 const Callback = () => {
   const [userInfo, setUserInfo] = useState(null);
   const searchParams = useSearchParams();
 
-  useEffect(() => {
-    const fetchToken = async (code) => {
-      try {
-        const response = await axios.post('http://localhost:5000/api/token', { code });
-        const { access_token } = response.data;
+useEffect(() => {
+  const code = searchParams.get('code');
 
-        const userInfoResponse = await axios.post('http://localhost:5000/api/userinfo/', {
-          access_token,
-        });
+  const fetchToken = async (code) => {
+  try {
+    const response = await axios.post('http://localhost:5000/api/token', { code });
+    console.log("OAuth Code received from Fayda:", code);
+    const { access_token } = response.data;
 
-        const decodedUserInfo = await decodeUserInfoResponse(userInfoResponse.data);
-        setUserInfo(decodedUserInfo);
-      } catch (error) {
-        console.error('Error fetching token or user info:', error);
-      }
-    };
+    const userInfoResponse = await axios.post('http://localhost:5000/api/userinfo/', {
+      access_token,
+    });
 
-    const code = searchParams.get('code');
-    if (code) fetchToken(code);
-  }, [searchParams]);
+    const decodedUserInfo = await decodeUserInfoResponse(userInfoResponse.data);
+
+    // Send to Express API to store
+    const savedUser = await axios.post('http://localhost:5000/api/users', decodedUserInfo);
+
+    // Set to localStorage and state
+    localStorage.setItem('userInfo', JSON.stringify(savedUser.data));
+    setUserInfo(savedUser.data);
+    
+  useUserStore.getState().setUser({
+  name: savedUser.data.name,
+  role: savedUser.data.role || "citizen",
+  email: savedUser.data.email,
+})
+console.log("Redirecting to /");
+
+    // Redirect to dashboard
+    window.location.href = '/'; 
+
+  } catch (error) {
+    console.error('Error fetching token or user info:', error);
+  }
+};
+
+  if (code) {
+    fetchToken(code);
+  } else {
+    // try to load from localStorage
+    const stored = localStorage.getItem('userInfo');
+    if (stored) {
+      setUserInfo(JSON.parse(stored));
+    }
+  }
+
+  const handleLogout = () => {
+  localStorage.removeItem('userInfo');
+  setUserInfo(null);
+};
+}, [searchParams]);
+
 
   return (
     <div className="flex min-h-screen bg-white text-black">

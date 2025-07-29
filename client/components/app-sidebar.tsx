@@ -1,0 +1,131 @@
+"use client"
+
+import * as React from "react"
+import {
+  Fingerprint,
+  BookOpenCheck,
+  ClipboardList,
+  GraduationCap,
+  HeartPulse,
+  Inbox,
+  Map,
+  ReceiptText,
+  Settings2,
+  SquareTerminal,
+  Vote,
+} from "lucide-react"
+
+import { NavMain } from "@/components/nav-main"
+import { NavProjects } from "@/components/nav-projects"
+import { NavUser } from "@/components/nav-user"
+import { TeamSwitcher } from "@/components/team-switcher"
+import {
+  Sidebar,
+  SidebarContent,
+  SidebarFooter,
+  SidebarHeader,
+  SidebarRail,
+} from "@/components/ui/sidebar"
+
+const data = {
+  user: {
+    name: "User",
+    email: "m@example.com",
+    avatar: "/avatars/shadcn.jpg",
+  },
+  teams: [
+    {
+      name: "oneCitizen Inc",
+      logo: Map,
+      plan: "Enterprise",
+    },
+  ],
+  navMain: [
+    {
+      title: "Citizen Services",
+      url: "#",
+      icon: SquareTerminal,
+      isActive: true,
+      items: [
+        {
+          title: "Local Services",
+          url: "/local-services",
+        },
+        {
+          title: "My Fayda Info",
+          url: "/fayda",
+        },
+        {
+          title: "Vital Records",
+          url: "/vital-records",
+        },
+        {
+          title: "Health",
+          url: "/health",
+        },
+        {
+          title: "Education",
+          url: "/education",
+        },
+        {
+          title: "Taxes",
+          url: "/taxes",
+        },
+        {
+          title: "Apply for a Service",
+          url: "/service-request",
+        },
+        {
+          title: "Elections",
+          url: "/elections",
+        },
+      ],
+    },
+    {
+      title: "Messages",
+      url: "/messages",
+      icon: Inbox,
+      items: [],
+    },
+    {
+      title: "Settings",
+      url: "#",
+      icon: Settings2,
+      items: [
+        {
+          title: "Profile Settings",
+          url: "/settings/profile",
+        },
+        {
+          title: "Billing Settings",
+          url: "/settings/billing",
+        },
+        {
+          title: "Other Settings",
+          url: "/settings/other",
+        },
+      ],
+    },
+  ],
+  projects: [],
+}
+
+export function AppSidebar({ ...props }: React.ComponentProps<typeof Sidebar>) {
+  const userInfo = JSON.parse(localStorage.getItem("userInfo") || "{}")
+  const { email, name, picture: avatar } = userInfo
+
+  return (
+    <Sidebar collapsible="icon" {...props}>
+      <SidebarHeader>
+        <TeamSwitcher teams={data.teams} />
+      </SidebarHeader>
+      <SidebarContent>
+        <NavMain items={data.navMain} />
+      </SidebarContent>
+      <SidebarFooter>
+        <NavUser user={{ email, name, avatar }} />
+      </SidebarFooter>
+      <SidebarRail />
+    </Sidebar>
+  )
+}

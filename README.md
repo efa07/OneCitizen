@@ -36,6 +36,45 @@ All data access is role-restricted and secured via national ID verification to e
 
 ---
 
+### Core System Modules 🔧
+
+#### 1,Citizen Profile System (Core user data from Fayda)
+
+    - Store + sync key profile info from Fayda login
+
+    - Local user record tied to Fayda UUID
+
+    - Editable fields: contact info, preferred language, etc.
+
+### 2,Service Directory
+
+    - All available government services
+
+    - Each service = title, description, type, department, status
+
+    - Group by categories like “Health”, “Legal”, “Transport”
+
+### 3,Service Request System
+
+    - Citizen can request a service (e.g., “Request Land Ownership Certificate”)
+
+    - Each request has status: Pending → In Progress → Completed
+
+    - Admins can assign, review, complete requests
+
+### 4,Role-Based Dashboards
+
+    - 🧍‍♂️Citizen: See own data & requests
+
+    - 🧑‍💼Admin (per dept): Manage incoming requests
+
+    - 🕵️‍♂️SuperAdmin: Can manage users, departments, system settings
+
+### 5,Audit Logs + Notifications 
+    - Log every action for transparency
+
+    - Citizen gets status updates on their requests
+
 ### 🎯 Expected Outcome
 
 By the end of the hackathon, OneCitizen will:
