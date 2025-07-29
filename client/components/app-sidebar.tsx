@@ -75,17 +75,21 @@ const data = {
           title: "Apply for a Service",
           url: "/dashboard/service-request",
         },
-        {
-          title: "Elections",
-          url: "/dashboard/elections",
-        },
+        
       ],
     },
     {
       title: "Messages",
       url: "/dashboard/messages",
       icon: Inbox,
-      items: [],
+      items: [
+        {title: "Inbox",
+          url :"/dashboard/messages/inbox"
+        },
+         {title: "Send",
+          url :"/dashboard/messages/send"
+        },
+      ],
     },
     {
       title: "Settings",
@@ -94,15 +98,15 @@ const data = {
       items: [
         {
           title: "Profile Settings",
-          url: "/settings/profile",
+          url: "/dashboard/settings/profile",
         },
         {
           title: "Billing Settings",
-          url: "/settings/billing",
+          url: "/dashboard/settings/billing",
         },
         {
           title: "Other Settings",
-          url: "/settings/other",
+          url: "/dashboard/settings/other",
         },
       ],
     },
