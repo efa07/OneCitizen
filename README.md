@@ -123,6 +123,73 @@ Here’s how it’s integrated and why it matters:
 
 ---
 
+## Installation and Deployment
+
+### 🔧 Local Setup (No Docker)
+
+1. **Clone the repo**:
+```bash
+   git clone https://github.com/your-username/your-repo-name.git
+   cd your-repo-name
+```
+
+2. **Install dependencies for both backend and frontend**:
+```bash
+cd server
+npm install
+cd ../client
+npm install````
+```
+3.**Set up environment variables**:
+*Create .env inside the server/ directory using the example:
+```bash
+cp .env.example .env
+```
+*Update it with your actual credentials for Fayda integration, DB, etc.
+
+4. **Start the database (if running locally, outside Docker)**:
+*Make sure PostgreSQL is running on port 5432.
+5. **Run backend**:
+```bash
+cd server
+npx prisma generate
+npm run dev
+```
+6. **Run frontend**:
+*In another terminal window:
+```bash
+cd client
+npm run dev
+```
+7. **Access the app**:
+    *Frontend: http://localhost:3000
+
+    *Backend API: http://localhost:5000
+    
+### ⚙️ Useful Commands
+
+- **Frontend** (from `client/`):
+  - `npm run dev` — Start Next.js in development mode
+  - `npm run build` — Build for production
+  - `npm run start` — Start production server
+
+- **Backend** (from `server/`):
+  - `npm run dev` — Start Express server with hot reload
+  - `npm run start` — Start server in production
+  - `npx prisma migrate dev` — Run DB migrations
+  - `npx prisma studio` — Open Prisma DB browser
+
+---
+
+### 📝 Environment Variables
+
+- See `.env.example` files in both `client/` and `server/` for required variables (API URLs, DB connection, JWT secrets, etc).
+
+---
+
+
+---
+
 ## 💬 Contact
 
 For questions, collaboration, or mentorship opportunities, feel free to reach out to:
