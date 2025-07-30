@@ -1,196 +1,183 @@
-> 🚨 **Powered by Fayda National ID** — OneCitizen is a Smart Governance portal that uses Fayda as the sole method of citizen authentication.
+# OneCitizen: A Unified Digital Public Service Portal
 
-# 📘 OneCitizen: A Unified Digital Public Service Portal
-
-## 👥 Contributors
-
-- Efa Tariku
-
-> Note: Efa Tariku is a registered solo participant in the hackathon.
+> 🚀 **Powered by Fayda National ID** — OneCitizen is a smart governance portal leveraging Fayda as the sole method of citizen authentication for secure, streamlined access to government services.
 
 ---
 
-## 🧠 Project Synopsis
+## 👥 Contributors
+
+- **Efa Tariku** (Solo Hackathon Participant)
+
+> **Note**: Efa Tariku is a registered solo participant in the hackathon.
+
+---
+
+## 🧠 Project Overview
 
 ### 🚨 Problem Statement
 
 Accessing government services in Ethiopia often involves:
-- Long queues and physical visits to Woreda/Kebele offices
-- Paper-based records that are prone to loss or duplication
-- Lack of a unified digital interface for citizen–government interaction
-- Limited traceability or transparency for citizens on request statuses
+- **Long queues** and mandatory physical visits to Woreda/Kebele offices
+- **Paper-based records** prone to loss, duplication, or errors
+- **No unified digital platform** for citizen-government interactions
+- **Limited transparency** in tracking service request statuses
 
-These inefficiencies contribute to **delayed services**, **citizen frustration**, and **administrative overload**.
+These inefficiencies lead to **delayed services**, **citizen frustration**, and **administrative bottlenecks**.
 
----
+### 💡 Solution: OneCitizen
 
-### 💡 Planned Solution
+**OneCitizen** is a centralized digital platform designed to:
+- Authenticate citizens securely using **Fayda National ID**
+- Provide access to a wide range of digital government services (e.g., birth certificates, land records)
+- Enable **real-time tracking** of service request statuses
+- Offer a **backend portal** for government administrators to manage requests efficiently
 
-**OneCitizen** is a centralized digital public service portal that:
-- Authenticates citizens using their **Fayda National ID**
-- Provides secure access to a variety of digital government services (e.g., birth certificate requests, land record inquiries, etc.)
-- Allows citizens to **track the status** of requests in real-time
-- Offers a backend portal for government admins to review and approve requests efficiently
-
-All data access is role-restricted and secured via national ID verification to ensure trust, privacy, and transparency.
+By integrating Fayda, OneCitizen ensures **trust**, **privacy**, and **transparency** through role-based access and secure identity verification.
 
 ---
 
-### Core System Modules 🔧
+## 🔧 Core System Modules
 
-#### 1,Citizen Profile System (Core user data from Fayda)
+### 1. Citizen Profile System
+- Syncs key profile data from Fayda National ID
+- Stores local user records tied to a unique Fayda UUID
+- Allows editable fields like contact info and preferred language
 
-    - Store + sync key profile info from Fayda login
+### 2. Service Directory
+- Lists all available government services with details (title, description, type, department, status)
+- Organizes services into categories (e.g., Health, Legal, Transport)
 
-    - Local user record tied to Fayda UUID
+### 3. Service Request System
+- Enables citizens to submit service requests (e.g., land ownership certificate)
+- Tracks request statuses: **Pending → In Progress → Completed**
+- Allows admins to assign, review, and complete requests
 
-    - Editable fields: contact info, preferred language, etc.
+### 4. Role-Based Dashboards
+- **Citizen**: View personal data and request statuses
+- **Admin (Department-Specific)**: Manage incoming requests
+- **SuperAdmin**: Oversee users, departments, and system settings
 
-### 2,Service Directory
-
-    - All available government services
-
-    - Each service = title, description, type, department, status
-
-    - Group by categories like “Health”, “Legal”, “Transport”
-
-### 3,Service Request System
-
-    - Citizen can request a service (e.g., “Request Land Ownership Certificate”)
-
-    - Each request has status: Pending → In Progress → Completed
-
-    - Admins can assign, review, complete requests
-
-### 4,Role-Based Dashboards
-
-    - 🧍‍♂️Citizen: See own data & requests
-
-    - 🧑‍💼Admin (per dept): Manage incoming requests
-
-    - 🕵️‍♂️SuperAdmin: Can manage users, departments, system settings
-
-### 5,Audit Logs + Notifications 
-    - Log every action for transparency
-
-    - Citizen gets status updates on their requests
-
-### 🎯 Expected Outcome
-
-By the end of the hackathon, OneCitizen will:
-- Demonstrate a working prototype of the unified digital portal
-- Simulate real-life government service workflows
-- Showcase how Fayda integration streamlines authentication and trust
-- Lay the groundwork for a scalable platform the Ethiopian government can adopt post-hackathon
+### 5. Audit Logs & Notifications
+- Logs all actions for transparency and accountability
+- Sends real-time status updates to citizens via notifications
 
 ---
 
-## 🧰 Tech Stack
+## 🎯 Expected Outcomes
+
+By the end of the hackathon, OneCitizen aims to:
+- Deliver a **working prototype** of the unified digital portal
+- Simulate **real-world government service workflows**
+- Demonstrate **Fayda integration** for secure authentication
+- Lay the foundation for a scalable platform adoptable by the Ethiopian government
+
+---
+
+## 🧰 Technology Stack
 
 ### 🔧 Backend
-- **Node.js (express)** – RESTful API development
-- **Prisma ORM** – Database modeling and access
-- **PostgreSQL** – Relational database for citizen and service data
-- **JWT** – Token-based session management
-- **Supabase** – Hosting + auth fallback if needed
--  **Redis** -  for Caching
+- **Node.js (Express)**: RESTful API development
+- **Prisma ORM**: Database modeling and management
+- **PostgreSQL**: Relational database for citizen and service data
+- **JWT**: Secure token-based session management
+- **Supabase**: Authentication fallback and hosting (if needed)
+- **Redis**: Caching for performance optimization
 
 ### 🎨 Frontend
-- **Next.js** – React-based SSR frontend framework
-- **Tailwind CSS** – Fast and responsive UI styling
-- **ShadCN UI** – Pre-styled components for professional UI
-- **Axios** – API calls
+- **Next.js**: React-based server-side rendering framework
+- **Tailwind CSS**: Responsive and modern UI styling
+- **ShadCN UI**: Pre-styled components for a polished interface
+- **Axios**: Simplified API communication
 
-### ☁️ Hosting/DevOps
-- **Vercel** – Frontend deployment
-- **Render** – Backend + PostgreSQL hosting
-- **Neon** - serverless Postgres DB
-
-### 🪪 Fayda’s Role
-
-Fayda, Ethiopia’s National Digital ID system, is the **core enabler** of the OneCitizen platform.
-
-Here’s how it’s integrated and why it matters:
-
-- **Primary Authentication Method**: Citizens log in using their Fayda ID, ensuring trusted, verified access to all services.
-- **Secure Identity Layer**: Fayda provides a **tamper-proof identity** layer that eliminates impersonation, fraud, and duplication.
-- **Single Source of Truth**: With Fayda, OneCitizen links every request, update, and transaction to a **nationally recognized identity**.
-- **Data Integrity & Accountability**: Every service request or update is traceable to a unique Fayda ID — reducing corruption and enhancing transparency.
-- **Government Integration-Ready**: Because Fayda is a government-standard, OneCitizen is fully aligned with national digital transformation goals.
-
-> Without Fayda, OneCitizen wouldn’t be possible. It’s not just “part” of the app — it *is* the foundation.
-
+### ☁️ Hosting & DevOps
+- **Vercel**: Frontend deployment
+- **Render**: Backend and PostgreSQL hosting
+- **Neon**: Serverless PostgreSQL database
 
 ---
 
-## Installation and Deployment
+## 🪪 Fayda Integration
 
-### 🔧 Local Setup (No Docker)
+Fayda, Ethiopia’s National Digital ID system, is the **core enabler** of OneCitizen. Here’s why it’s critical:
 
-1. **Clone the repo**:
-```bash
-   git clone https://github.com/your-username/your-repo-name.git
-   cd your-repo-name
-```
+- **Secure Authentication**: Citizens log in using their Fayda ID, ensuring verified access.
+- **Tamper-Proof Identity**: Eliminates impersonation, fraud, and duplication.
+- **Single Source of Truth**: Links all requests and transactions to a unique Fayda ID.
+- **Transparency & Accountability**: Tracks every action, reducing corruption risks.
+- **Government Alignment**: Fully supports Ethiopia’s digital transformation goals.
 
-2. **Install dependencies for both backend and frontend**:
-```bash
-cd server
-npm install
-cd ../client
-npm install````
-```
-3.**Set up environment variables**:
-*Create .env inside the server/ directory using the example:
-```bash
-cp .env.example .env
-```
-*Update it with your actual credentials for Fayda integration, DB, etc.
-
-4. **Start the database (if running locally, outside Docker)**:
-*Make sure PostgreSQL is running on port 5432.
-5. **Run backend**:
-```bash
-cd server
-npx prisma generate
-npm run dev
-```
-6. **Run frontend**:
-*In another terminal window:
-```bash
-cd client
-npm run dev
-```
-7. **Access the app**:
-    *Frontend: http://localhost:3000
-
-    *Backend API: http://localhost:5000
-    
-### ⚙️ Useful Commands
-
-- **Frontend** (from `client/`):
-  - `npm run dev` — Start Next.js in development mode
-  - `npm run build` — Build for production
-  - `npm run start` — Start production server
-
-- **Backend** (from `server/`):
-  - `npm run dev` — Start Express server with hot reload
-  - `npm run start` — Start server in production
-  - `npx prisma migrate dev` — Run DB migrations
-  - `npx prisma studio` — Open Prisma DB browser
+> **Why Fayda Matters**: Fayda isn’t just a feature—it’s the foundation of OneCitizen’s trust and scalability.
 
 ---
 
-### 📝 Environment Variables
+## ⚙️ Installation & Deployment
 
-- See `.env.example` files in both `client/` and `server/` for required variables (API URLs, DB connection, JWT secrets, etc).
+### 📦 Local Setup (Without Docker)
+
+1. **Clone the Repository**:
+   ```bash
+   git clone https://github.com/your-username/onecitizen.git
+   cd onecitizen
+   ```
+
+2. **Install Dependencies**:
+   ```bash
+   cd server
+   npm install
+   cd ../client
+   npm install
+   ```
+
+3. **Configure Environment Variables**:
+   - Create a `.env` file in the `server/` directory:
+     ```bash
+     cp server/.env.example server/.env
+     ```
+   - Update `.env` with credentials for Fayda, database, and JWT secrets.
+
+4. **Start the Database**:
+   - Ensure PostgreSQL is running locally on port `5432`.
+
+5. **Run the Backend**:
+   ```bash
+   cd server
+   npx prisma generate
+   npm run dev
+   ```
+
+6. **Run the Frontend**:
+   In a new terminal:
+   ```bash
+   cd client
+   npm run dev
+   ```
+
+7. **Access the Application**:
+   - Frontend: [http://localhost:3000](http://localhost:3000)
+   - Backend API: [http://localhost:5000](http://localhost:5000)
+
+### 🛠️ Useful Commands
+
+#### Frontend (`client/` directory)
+- `npm run dev`: Start Next.js in development mode
+- `npm run build`: Build for production
+- `npm run start`: Start production server
+
+#### Backend (`server/` directory)
+- `npm run dev`: Start Express server with hot reload
+- `npm run start`: Start production server
+- `npx prisma migrate dev`: Run database migrations
+- `npx prisma studio`: Launch Prisma’s database browser
 
 ---
 
+## 📝 Environment Variables
+
+Refer to `.env.example` files in `client/` and `server/` for required variables (e.g., API URLs, database connection strings, JWT secrets).
 
 ---
 
 ## 💬 Contact
 
-For questions, collaboration, or mentorship opportunities, feel free to reach out to:
-**Efa Tariku** — efatariku07@email.com
+For questions, collaboration, or mentorship opportunities, contact:
+- **Efa Tariku**: [efatariku07@email.com](mailto:efatariku07@email.com)
