@@ -156,6 +156,29 @@ Fayda, Ethiopia’s National Digital ID system, is the **core enabler** of OneCi
    - Frontend: [http://localhost:3000](http://localhost:3000)
    - Backend API: [http://localhost:5000](http://localhost:5000)
 
+## 🐳 Docker Setup (Recommended for Deployment)
+
+1. Ensure Docker and Docker Compose are installed on your machine.
+
+2. Set up environment files:
+   - Create server/.env and client/.env.local using provided .env.example files.
+   - Make sure DATABASE_URL in server/.env uses the Docker PostgreSQL service:
+     ```
+     DATABASE_URL=postgresql://faydauser:faydapass@postgres:5432/faydadb
+     ```
+
+3. Build and run containers:
+   From the project root:
+   ```
+   docker-compose up --build
+   ```
+
+4. Access your services:
+   - Frontend: http://localhost:3000
+   - Backend API: http://localhost:5000
+   - PostgreSQL: localhost:5432 (user/pass: faydauser / faydapass)
+
+
 ### 🛠️ Useful Commands
 
 #### Frontend (`client/` directory)
