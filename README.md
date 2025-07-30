@@ -158,25 +158,77 @@ Fayda, Ethiopia’s National Digital ID system, is the **core enabler** of OneCi
 
 ## 🐳 Docker Setup (Recommended for Deployment)
 
-1. Ensure Docker and Docker Compose are installed on your machine.
+### 1. Ensure Docker and Docker Compose are installed on your machine.
 
-2. Set up environment files:
+ - Set up environment files:
    - Create server/.env and client/.env.local using provided .env.example files.
    - Make sure DATABASE_URL in server/.env uses the Docker PostgreSQL service:
      ```
      DATABASE_URL=postgresql://faydauser:faydapass@postgres:5432/faydadb
      ```
+     
+### 2. Build the Docker Image
 
-3. Build and run containers:
-   From the project root:
-   ```
-   docker-compose up --build
-   ```
+If a `Dockerfile` exists in the repository root:
 
-4. Access your services:
-   - Frontend: http://localhost:3000
-   - Backend API: http://localhost:5000
-   - PostgreSQL: localhost:5432 (user/pass: faydauser / faydapass)
+```bash
+docker build -t onecitizen .
+```
+
+### 3. Run the Container
+
+Replace `<options>` with any specific options your application may need (e.g., port mapping, environment variables):
+
+```bash
+docker run -d --name onecitizen_container -p 8000:8000 onecitizen
+```
+
+- Change `8000:8000` to the appropriate ports if your application uses a different one.
+
+### 4. Using Docker Compose (Optional)
+
+If a `docker-compose.yml` file is available, you can start the app and its dependencies with:
+
+```bash
+docker compose up --build
+```
+
+or (for older Docker versions):
+
+```bash
+docker-compose up --build
+```
+
+### 5. Access the Application
+
+- Open your browser and go to [http://localhost:8000](http://localhost:8000) (or the port specified in your setup).
+
+## Customization
+
+- Review the `.env.example` or `README` notes for environment variables and configuration options.
+- To stop and remove containers:
+
+```bash
+docker stop onecitizen_container
+docker rm onecitizen_container
+```
+
+Or, if using Compose:
+
+```bash
+docker compose down
+```
+
+## Troubleshooting
+
+- Ensure Docker is running before building or starting containers.
+- Check logs for errors:
+
+```bash
+docker logs onecitizen_container
+```
+
+- If you encounter permission issues, try running commands with `sudo` or adjust your Docker permissions.
 
 
 ### 🛠️ Useful Commands
