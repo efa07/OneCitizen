@@ -18,4 +18,4 @@ RUN npx prisma generate
 EXPOSE 5000
 
 # Start the backend
-CMD ["npm", "run", "start"]
+CMD ["npm", "run", "dev"]
