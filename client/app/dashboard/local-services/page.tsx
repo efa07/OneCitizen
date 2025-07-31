@@ -1,6 +1,7 @@
 "use client"
 
 import React from "react"
+import { useRouter } from "next/navigation"
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card"
 import { Button } from "@/components/ui/button"
 import {
@@ -14,37 +15,39 @@ import {
 const services = [
   {
     title: "Residency Letter",
+    slug: "residency-letter",
     description: "Request a letter confirming your place of residence.",
     icon: <MapPin className="w-6 h-6 text-primary" />,
-    action: () => alert("Request Residency Letter"),
   },
   {
     title: "House Registration",
+    slug: "house-registration",
     description: "Register your house under your name officially.",
     icon: <Home className="w-6 h-6 text-primary" />,
-    action: () => alert("Register House"),
   },
   {
     title: "Business Permit",
+    slug: "business-permit",
     description: "Apply for a small business or vendor permit.",
     icon: <Building2 className="w-6 h-6 text-primary" />,
-    action: () => alert("Apply for Business Permit"),
   },
   {
     title: "ID Verification",
+    slug: "id-verification",
     description: "Verify your Fayda/National ID at your local office.",
     icon: <BadgeCheck className="w-6 h-6 text-primary" />,
-    action: () => alert("Verify ID"),
   },
   {
     title: "Document Attestation",
+    slug: "document-attestation",
     description: "Get official stamps on important documents.",
     icon: <FileText className="w-6 h-6 text-primary" />,
-    action: () => alert("Attest Document"),
   },
 ]
 
 export default function LocalServicesPage() {
+  const router = useRouter() 
+
   return (
     <div className="p-6 max-w-6xl mx-auto">
       <h1 className="text-3xl font-bold mb-2 text-primary">
@@ -68,7 +71,9 @@ export default function LocalServicesPage() {
               <p className="text-sm text-muted-foreground mb-4">
                 {service.description}
               </p>
-              <Button onClick={service.action}>Request</Button>
+              <Button onClick={() => router.push(`/services/${service.slug}`)}>
+                Request
+              </Button>
             </CardContent>
           </Card>
         ))}

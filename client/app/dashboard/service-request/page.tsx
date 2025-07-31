@@ -17,7 +17,6 @@ const serviceCategories = [
     title: "Identity & Residency",
     description: "Request residency letters, ID verifications, or household registration.",
     icon: <ScrollText className="w-6 h-6 text-primary" />,
-    action: () => alert("Apply for Identity Service"),
   },
   {
     title: "Vital Records",
