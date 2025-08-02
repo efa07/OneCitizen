@@ -7,6 +7,7 @@ type UserInfo = {
   role: string;
   email?: string;
 };
+import Link from "next/link";
 
 export default function CitizenDashboard() {
   const [user, setUser] = useState<UserInfo | null>(null);
@@ -35,20 +36,27 @@ export default function CitizenDashboard() {
       </section>
 
       <section className="grid gap-4 md:grid-cols-2 lg:grid-cols-3">
+        <Link href={"/dashboard/health"} >
         <div className="rounded-lg bg-primary/10 p-4 shadow-sm hover:bg-primary/20 transition-colors">
           <h3 className="font-medium">🏥 Health Records</h3>
           <p className="text-sm text-muted-foreground">View your medical history and vaccination data.</p>
         </div>
+        </Link>
+
+          <Link href={"/dashboard/education"}>
 
         <div className="rounded-lg bg-primary/10 p-4 shadow-sm hover:bg-primary/20 transition-colors">
           <h3 className="font-medium">📄 ID & Certificates</h3>
           <p className="text-sm text-muted-foreground">Access your Fayda ID, birth certificate, and more.</p>
         </div>
+       </Link>
 
+<Link href={"/dashboard/local-services"}>
         <div className="rounded-lg bg-primary/10 p-4 shadow-sm hover:bg-primary/20 transition-colors">
           <h3 className="font-medium">🏛️ Service Requests</h3>
           <p className="text-sm text-muted-foreground">Submit and track government service requests.</p>
         </div>
+        </Link>
       </section>
 
       <section className="rounded-xl bg-muted/50 p-6 shadow-sm">

@@ -1,32 +1,34 @@
 "use client"
 
-import React from "react"
+import React, { useReducer } from "react"
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card"
 import { Button } from "@/components/ui/button"
 import { Heart, UserPlus, Cross, BookUser } from "lucide-react"
+import { useRouter } from "next/navigation"
 
 const vitalRecords = [
   {
     title: "Birth Certificate",
     description: "Request or verify your official birth certificate record.",
     icon: <UserPlus className="w-6 h-6 text-primary" />,
-    action: () => alert("Request Birth Certificate"),
+    slug: "birth-certificate",
   },
   {
     title: "Death Certificate",
     description: "Request documentation for a deceased family member.",
     icon: <Cross className="w-6 h-6 text-primary" />,
-    action: () => alert("Request Death Certificate"),
+    slug: "death-certificate",
   },
   {
     title: "Marriage Certificate",
     description: "Apply or retrieve proof of marriage from public records.",
     icon: <Heart className="w-6 h-6 text-primary" />,
-    action: () => alert("Request Marriage Certificate"),
+    slug: "marriage-certificate",
   },
 ]
 
 export default function VitalRecordsPage() {
+  const router = useRouter()
   return (
     <div className="p-6 max-w-6xl mx-auto">
       <h1 className="text-3xl font-bold mb-2 text-primary">Vital Records</h1>
@@ -48,8 +50,12 @@ export default function VitalRecordsPage() {
               <p className="text-sm text-muted-foreground mb-4">
                 {record.description}
               </p>
-              <Button onClick={record.action}>Request</Button>
-            </CardContent>
+         </CardContent>
+         <CardContent>
+          <Button onClick={() => router.push(`/dashboard/local-services/${record.slug}`)}>
+                Request
+              </Button>   
+         </CardContent>
           </Card>
         ))}
       </div>

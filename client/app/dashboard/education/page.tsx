@@ -1,6 +1,7 @@
 "use client"
 
 import React from "react"
+import { useRouter } from "next/navigation"
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card"
 import { Button } from "@/components/ui/button"
 import { ScrollText, School, GraduationCap } from "lucide-react"
@@ -10,23 +11,25 @@ const educationServices = [
     title: "Academic Certificates",
     description: "View and download your official certificates.",
     icon: <GraduationCap className="w-6 h-6 text-primary" />,
-    action: () => alert("Access Academic Certificates"),
+    slug: "academic-certificates",
   },
   {
     title: "Enrollment History",
     description: "Check where and when you've been enrolled.",
     icon: <School className="w-6 h-6 text-primary" />,
-    action: () => alert("View Enrollment History"),
+    slug: "enrollment-history",
   },
   {
     title: "Verification Request",
     description: "Share records securely with employers or institutions.",
     icon: <ScrollText className="w-6 h-6 text-primary" />,
-    action: () => alert("Request Education Verification"),
+    slug: "verification-request",
   },
 ]
 
 export default function EducationPage() {
+  const router = useRouter()
+
   return (
     <div className="p-6 max-w-6xl mx-auto">
       <h1 className="text-3xl font-bold mb-2 text-primary">Education Records</h1>
@@ -42,10 +45,10 @@ export default function EducationPage() {
               <CardTitle>{service.title}</CardTitle>
             </CardHeader>
             <CardContent>
-              <p className="text-sm text-muted-foreground mb-4">
-                {service.description}
-              </p>
-              <Button onClick={service.action}>Access</Button>
+              <p className="text-sm text-muted-foreground mb-4">{service.description}</p>
+              <Button onClick={() => router.push(`/dashboard/education/${service.slug}`)}>
+                Access
+              </Button>
             </CardContent>
           </Card>
         ))}
