@@ -18,7 +18,7 @@ router.get('/', verifyWoredaToken, async (req, res) => {
     })
 
     res.json({
-      message: `Welcome to Woreda Dashboard, ${req.user.email}!`,
+      message: `Welcome to your wordspace, ${req.user.name}!`,
       data: {
         notifications: [],
         pendingRequests

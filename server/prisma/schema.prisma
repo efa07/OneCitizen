@@ -57,7 +57,8 @@ model ServiceRequest {
   extraData    Json
   response     String?
   status       String   @default("pending")
-  responseFile String? // file path or URL
+  responseFile String?
+  resultFilePath String?
   responseNote String?
   updatedAt    DateTime @updatedAt
   createdAt    DateTime @default(now())

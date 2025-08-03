@@ -111,7 +111,7 @@ export default function ServiceRequestPage() {
       })
 
       if (res.ok) {
-        toast("Request submitted!")
+        toast.success("Request submitted!")
         const data = await res.json()
         if (data?.response) setResponseText(data.response)
       } else {
@@ -123,15 +123,6 @@ export default function ServiceRequestPage() {
     } finally {
       setSubmitting(false)
       setForm({
-        fullName: "",
-        address: "",
-        email: "",
-        phoneNumber: "",
-        faydaId: "",
-        nationality: "",
-        gender: "",
-        region: "",
-        zone: "",
         reason: "",
         ...(serviceFields[slug as string]?.reduce((acc, field) => {
           acc[field.name] = ""

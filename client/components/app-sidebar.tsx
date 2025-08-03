@@ -2,21 +2,13 @@
 
 import * as React from "react"
 import {
-  Fingerprint,
-  BookOpenCheck,
-  ClipboardList,
-  GraduationCap,
-  HeartPulse,
   Inbox,
   Map,
-  ReceiptText,
   Settings2,
   SquareTerminal,
-  Vote,
 } from "lucide-react"
 
 import { NavMain } from "@/components/nav-main"
-import { NavProjects } from "@/components/nav-projects"
 import { NavUser } from "@/components/nav-user"
 import { TeamSwitcher } from "@/components/team-switcher"
 import {
@@ -58,10 +50,6 @@ const data = {
         {
           title: "Vital Records",
           url: "/dashboard/vital-records",
-        },
-        {
-          title: "Health",
-          url: "/dashboard/health",
         },
         {
           title: "Education",

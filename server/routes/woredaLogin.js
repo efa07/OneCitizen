@@ -8,7 +8,7 @@ const woredaWorker = {
   id: 1,
   email: "worker@test",
   password: "worker123", 
-  name: "Woreda Worker"
+  name: "Abebe Belachw"
 }
 
 const JWT_SECRET = process.env.JWT_SECRET || "supersecret"
