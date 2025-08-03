@@ -11,7 +11,7 @@ import localService from "./routes/local-service.js"
 import woredaLogin from "./routes/woredaLogin.js"
 import woredaDash from "./routes/woredaDashboard.js"
 import woredaRequest from "./routes/woredaRequest.js"
-
+import requestStatus from "./routes/status.js"
 import path from 'path';
 import { fileURLToPath } from 'url';
 import { dirname } from 'path';
@@ -41,6 +41,7 @@ app.use("/api/request", localService)
 app.use("/api/woreda/login",woredaLogin)
 app.use("/api/woreda/dashboard",woredaDash)
 app.use("/api/woreda",woredaRequest)
+app.use("/api/userRequest/status",requestStatus)
 
 const PORT = process.env.PORT || 5000;
 app.listen(PORT, () => console.log(`Server running on port ${PORT}`));

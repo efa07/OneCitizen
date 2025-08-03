@@ -80,21 +80,13 @@ const data = {
       ],
     },
     {
-      title: "Settings",
+      title: "Track Request",
       url: "#",
       icon: Settings2,
       items: [
         {
-          title: "Profile Settings",
-          url: "/dashboard/settings/profile",
-        },
-        {
-          title: "Billing Settings",
-          url: "/dashboard/settings/billing",
-        },
-        {
-          title: "Other Settings",
-          url: "/dashboard/settings/other",
+          title: "Request Status",
+          url: "/dashboard/status",
         },
       ],
     },
