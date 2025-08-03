@@ -3,6 +3,8 @@
 import { useRouter } from 'next/navigation';
 import { useEffect } from 'react';
 import Spinner from '@/components/Spinner';
+import { Loader2 } from "lucide-react"
+
 
 export default function DashboardPage() {
   const router = useRouter();
@@ -29,5 +31,7 @@ export default function DashboardPage() {
     }
   }, []);
 
-  return <Spinner />;
+  return <div className="flex items-center justify-center h-screen">
+        <Loader2 className="animate-spin h-8 w-8 text-primary" />
+      </div>;
 }

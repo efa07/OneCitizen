@@ -8,8 +8,8 @@ import { Textarea } from "@/components/ui/textarea"
 import { Label } from "@/components/ui/label"
 import { Separator } from "@/components/ui/separator"
 import Image from "next/image"
+import { toast } from "sonner"
 
-// 🧩 Extra dynamic fields per service slug
 const serviceFields: Record<string, { label: string; name: string }[]> = {
   "business-permit": [
     { label: "Business Name", name: "businessName" },
@@ -26,9 +26,8 @@ const serviceFields: Record<string, { label: string; name: string }[]> = {
   ],
 }
 
-export default function ServiceRequestForm() {
+export default function ServiceRequestPage() {
   const { slug } = useParams()
-
   const [form, setForm] = useState<any>({
     fullName: "",
     address: "",
@@ -43,7 +42,10 @@ export default function ServiceRequestForm() {
   })
 
   const [profilePic, setProfilePic] = useState<string | null>(null)
+  const [responseText, setResponseText] = useState<string | null>(null)
+  const [submitting, setSubmitting] = useState(false)
 
+  //  Pre-fill form from localStorage + add dynamic fields
   useEffect(() => {
     const storedUser = localStorage.getItem("userInfo")
     if (storedUser) {
@@ -64,41 +66,85 @@ export default function ServiceRequestForm() {
           setProfilePic(parsed.picture)
         }
       } catch (err) {
-        console.error("Invalid user info in localStorage", err)
+        console.error("Invalid userInfo in localStorage", err)
       }
     }
 
-    // 👇 Add empty fields for the dynamic fields if they exist
     const extras = serviceFields[slug as string] || []
-    const extraFieldDefaults = extras.reduce((acc, field) => {
+    const defaults = extras.reduce((acc, field) => {
       acc[field.name] = ""
       return acc
     }, {} as any)
-    setForm((prev: any) => ({ ...prev, ...extraFieldDefaults }))
+
+    setForm((prev: any) => ({ ...prev, ...defaults }))
   }, [slug])
+
+  //  Fetch Woreda response if it exists
+  useEffect(() => {
+    const fetchResponse = async () => {
+      if (!form.faydaId || !slug) return
+      try {
+        const res = await fetch(
+          `http://localhost:5000/api/request?serviceType=${slug}&userId=${form.faydaId}`
+        )
+        const data = await res.json()
+        if (data?.response) setResponseText(data.response)
+      } catch (err) {
+        console.error("Fetch response failed", err)
+      }
+    }
+
+    fetchResponse()
+  }, [slug, form.faydaId])
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
     setForm({ ...form, [e.target.name]: e.target.value })
   }
 
   const handleSubmit = async () => {
-    const res = await fetch("/api/request", {
-      method: "POST",
-      headers: { "Content-Type": "application/json" },
-      body: JSON.stringify({ serviceType: slug, ...form }),
-    })
+    setSubmitting(true)
+    try {
+      const res = await fetch("http://localhost:5000/api/request", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ serviceType: slug, ...form }),
+      })
 
-    if (res.ok) {
-      alert("Request submitted!")
-    } else {
-      alert("Error submitting request.")
+      if (res.ok) {
+        toast("Request submitted!")
+        const data = await res.json()
+        if (data?.response) setResponseText(data.response)
+      } else {
+        alert(" Failed to submit.")
+      }
+    } catch (err) {
+      console.error("Submit error:", err)
+      toast.error("Something went wrong.")
+    } finally {
+      setSubmitting(false)
+      setForm({
+        fullName: "",
+        address: "",
+        email: "",
+        phoneNumber: "",
+        faydaId: "",
+        nationality: "",
+        gender: "",
+        region: "",
+        zone: "",
+        reason: "",
+        ...(serviceFields[slug as string]?.reduce((acc, field) => {
+          acc[field.name] = ""
+          return acc
+        }, {} as any) || {})
+      })
     }
   }
 
   const renderInput = (label: string, name: keyof typeof form) => (
     <div className="space-y-1">
-      <Label htmlFor={name}>{label}</Label>
-      <Input id={name} name={name} value={form[name]} onChange={handleChange} />
+      <Label htmlFor={String(name)}>{label}</Label>
+      <Input id={String(name)} name={String(name)} value={form[name]} onChange={handleChange} />
     </div>
   )
 
@@ -108,7 +154,6 @@ export default function ServiceRequestForm() {
         {slug?.toString().replace("-", " ")} Request
       </h1>
 
-      {/* 👤 Profile Image */}
       {profilePic && (
         <div className="w-[80px] h-[80px] rounded-full overflow-hidden border shadow-sm flex justify-center mb-6">
           <Image
@@ -121,7 +166,7 @@ export default function ServiceRequestForm() {
         </div>
       )}
 
-      {/* 🧑 Personal Info */}
+      {/*  Personal Info */}
       <div className="mb-6">
         <h2 className="text-lg font-semibold text-primary mb-2">Personal Info</h2>
         <Separator className="mb-4" />
@@ -133,7 +178,7 @@ export default function ServiceRequestForm() {
         </div>
       </div>
 
-      {/* 📞 Contact Info */}
+      {/* Contact Info */}
       <div className="mb-6">
         <h2 className="text-lg font-semibold text-primary mb-2">Contact Info</h2>
         <Separator className="mb-4" />
@@ -143,7 +188,7 @@ export default function ServiceRequestForm() {
         </div>
       </div>
 
-      {/* 🗺️ Location Info */}
+      {/* ocation Info */}
       <div className="mb-6">
         <h2 className="text-lg font-semibold text-primary mb-2">Location Info</h2>
         <Separator className="mb-4" />
@@ -154,7 +199,7 @@ export default function ServiceRequestForm() {
         </div>
       </div>
 
-      {/* 📝 Reason Section */}
+      {/*Reason */}
       <div className="mb-6">
         <h2 className="text-lg font-semibold text-primary mb-2">Request Info</h2>
         <Separator className="mb-4" />
@@ -171,7 +216,7 @@ export default function ServiceRequestForm() {
         </div>
       </div>
 
-      {/* 🧩 Dynamic Fields Based on Slug */}
+      {/* Dynamic Extra Fields */}
       {(serviceFields[slug as string] || []).length > 0 && (
         <div className="mb-6">
           <h2 className="text-lg font-semibold text-primary mb-2">Extra Info</h2>
@@ -193,10 +238,18 @@ export default function ServiceRequestForm() {
       )}
 
       <div className="mt-8">
-        <Button onClick={handleSubmit} className="w-full md:w-auto">
-          Submit Request
+        <Button onClick={handleSubmit} disabled={submitting} className="w-full md:w-auto">
+          {submitting ? "Submitting..." : "Submit Request"}
         </Button>
       </div>
+
+      {/* Woreda Response */}
+      {responseText && (
+        <div className="mt-10 p-4 bg-green-100 border border-green-300 rounded-md shadow-sm">
+          <h2 className="font-bold text-green-800 mb-2">Woreda Response:</h2>
+          <p className="text-green-900 whitespace-pre-wrap">{responseText}</p>
+        </div>
+      )}
     </div>
   )
 }

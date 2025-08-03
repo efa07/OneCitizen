@@ -54,7 +54,7 @@ export default function HealthPage() {
             <CardContent>
                <Button onClick={() => router.push(`/dashboard/health/${service.slug}`)}>
                               Access
-                            </Button>
+                    </Button>
             </CardContent>
           </Card>
         ))}

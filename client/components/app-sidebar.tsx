@@ -68,8 +68,8 @@ const data = {
           url: "/dashboard/education",
         },
         {
-          title: "Taxes",
-          url: "/dashboard/taxes",
+          title: "Licenses service",
+          url: "/dashboard/licenses",
         },
         {
           title: "Apply for a Service",
@@ -84,10 +84,10 @@ const data = {
       icon: Inbox,
       items: [
         {title: "Inbox",
-          url :"/dashboard/messages/inbox"
+          url :"/dashboard/messages"
         },
          {title: "Send",
-          url :"/dashboard/messages/send"
+          url :"/dashboard/messages"
         },
       ],
     },
