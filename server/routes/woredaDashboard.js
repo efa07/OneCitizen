@@ -1,4 +1,3 @@
-// server/routes/woredaDashboard.js
 import express from 'express'
 import { verifyWoredaToken } from '../middleware/auth.js'
 import { PrismaClient } from '@prisma/client'

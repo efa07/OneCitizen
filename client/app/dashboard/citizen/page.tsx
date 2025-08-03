@@ -29,16 +29,16 @@ export default function CitizenDashboard() {
 
       <section className="rounded-xl bg-muted/50 p-6 shadow-sm flex items-center aligh-center flex-row justify-between">
         <div>
-          <h1 className="text-4xl font-semibold">Welcome, {user?.name || "Citizen"} 👋</h1>
+          <h1 className="text-4xl font-semibold">   Welcome, {user?.name.split(" ")[0] || "Citizen"} </h1>
           <p className="text-muted-foreground">This is your personalized dashboard for accessing public services.</p>
         </div>
         <Calendar02 />
       </section>
 
       <section className="grid gap-4 md:grid-cols-2 lg:grid-cols-3">
-        <Link href={"/dashboard/health"} >
+        <Link href={"/dashboard/legal-service"} >
         <div className="rounded-lg bg-primary/10 p-4 shadow-sm hover:bg-primary/20 transition-colors">
-          <h3 className="font-medium">🏥 Health Records</h3>
+          <h3 className="font-medium">🏥 Legal Service</h3>
           <p className="text-sm text-muted-foreground">View your medical history and vaccination data.</p>
         </div>
         </Link>

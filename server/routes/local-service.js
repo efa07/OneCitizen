@@ -4,7 +4,7 @@ import { PrismaClient } from "@prisma/client"
 const router = express.Router()
 const prisma = new PrismaClient()
 
-// POST /api/request
+// /api/request
 router.post("/", async (req, res) => {
   const {
     serviceType,
@@ -41,7 +41,7 @@ router.post("/", async (req, res) => {
       },
     })
 
-    // Simulate auto-response (optional)
+    // Simulate auto-response 
     const fakeResponse = `Your ${serviceType} request is being reviewed.`
     await prisma.serviceRequest.update({
       where: { id: request.id },
@@ -55,7 +55,7 @@ router.post("/", async (req, res) => {
   }
 })
 
-// GET /api/request?serviceType=...&userId=...
+// /api/request?serviceType=...userId=...
 router.get("/", async (req, res) => {
   const { serviceType, userId } = req.query
 

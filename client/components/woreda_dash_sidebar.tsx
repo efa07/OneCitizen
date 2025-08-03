@@ -71,21 +71,6 @@ const data = {
       ],
     },
     {
-      title: "Announcements",
-      url: "#",
-      icon: Megaphone,
-      items: [
-        {
-          title: "Post Announcement",
-          url: "/woreda/announcements/new",
-        },
-        {
-          title: "Manage Announcements",
-          url: "/woreda/announcements/manage",
-        },
-      ],
-    },
-    {
       title: "Reports",
       url: "#",
       icon: BarChart3,
@@ -100,21 +85,7 @@ const data = {
         },
       ],
     },
-    {
-      title: "Settings",
-      url: "#",
-      icon: Settings2,
-      items: [
-        {
-          title: "Profile Settings",
-          url: "/woreda/settings/profile",
-        },
-        {
-          title: "System Settings",
-          url: "/woreda/settings/system",
-        },
-      ],
-    },
+    
   ],
   projects: [],
 }

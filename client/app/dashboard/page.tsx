@@ -2,7 +2,6 @@
 
 import { useRouter } from 'next/navigation';
 import { useEffect } from 'react';
-import Spinner from '@/components/Spinner';
 import { Loader2 } from "lucide-react"
 
 
@@ -20,8 +19,8 @@ export default function DashboardPage() {
         case "ADMIN":
           router.replace("/dashboard/admin");
           break;
-        case "DEPARTMENT_HEAD":
-          router.replace("/dashboard/department");
+        case "WOREDA":
+          router.replace("/woreda/dashboard");
           break;
         default:
           router.replace("/dashboard/citizen");
