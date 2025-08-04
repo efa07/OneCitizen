@@ -4,14 +4,16 @@ import { PrismaClient } from "@prisma/client"
 const router = express.Router()
 const prisma = new PrismaClient()
 
-router.get("/:faydaId", async (req, res) => {
-  const { faydaId } = req.params
+router.get("/:email", async (req, res) => {
+  const { email } = req.params
 
-  if (!faydaId) return res.status(400).json({ error: "Missing Fayda ID" })
-console.log(faydaId)
+  if (!email) return res.status(400).json({ error: "Missing Fayda ID" })
+  console.log("fayde load")
+
+
   try {
-    const latestRequest = await prisma.serviceRequest.findFirst({
-      where: { faydaId },
+    const latestRequest = await prisma.serviceRequest.findMany({
+      where: { email },
       orderBy: { createdAt: "desc" },
     })
 
