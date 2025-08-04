@@ -56,17 +56,17 @@ const data = {
       ],
     },
     {
-      title: "Citizen Records",
+      title: "Berith Certeficate",
       url: "#",
       icon: FileSearch,
       items: [
         {
-          title: "Search Citizens",
-          url: "/woreda/citizens/search",
+          title: "Search Certeficate",
+          url: "/woreda/dashboard/BirthCertificateSearch",
         },
         {
-          title: "Manage Records",
-          url: "/woreda/citizens/manage",
+          title: "create Birth Certeficate",
+          url: "/woreda/dashboard/BirthCertificateForm",
         },
       ],
     },

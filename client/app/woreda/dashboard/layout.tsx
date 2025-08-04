@@ -13,6 +13,7 @@ import {
   SidebarProvider,
   SidebarTrigger,
 } from "@/components/ui/sidebar";
+import BackButton from "@/components/backButton"
 
 export default function DashboardLayout({ children }: { children: React.ReactNode }) {
   return (
@@ -30,7 +31,7 @@ export default function DashboardLayout({ children }: { children: React.ReactNod
               <BreadcrumbList>
                 <BreadcrumbItem className="hidden md:block">
                   <BreadcrumbLink href="#">
-                  One Citizen
+                  < BackButton />
                     </BreadcrumbLink>
                 </BreadcrumbItem>
                 <BreadcrumbSeparator className="hidden md:block" />

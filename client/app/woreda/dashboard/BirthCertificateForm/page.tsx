@@ -38,7 +38,7 @@ export default function BirthCertificateForm() {
         ...form,
         userId,
       })
-      toast("Birth Certificate created successfully!")
+      toast.success("Birth Certificate created successfully!")
     } catch (err) {
       toast.error("Something went wrong. Check console.")
       console.error(err)
@@ -46,7 +46,7 @@ export default function BirthCertificateForm() {
   }
 
   return (
-    <form onSubmit={handleSubmit} className="space-y-4 max-w-xl mx-auto p-4 bg-white rounded shadow">
+    <form onSubmit={handleSubmit} className="space-y-4 min-w-xl mx-auto p-6 bg-white rounded shadow">
       {[
         { label: "Certificate Number", name: "certificateNumber" },
         { label: "Full Name", name: "fullName" },

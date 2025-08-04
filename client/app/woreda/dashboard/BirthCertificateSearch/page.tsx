@@ -8,7 +8,7 @@ import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card"
 import axios from "axios"
 import html2canvas from "html2canvas"
 import jsPDF from "jspdf"
-import { QRCodeCanvas } from "qrcode.react"
+import {QRCodeCanvas}  from "qrcode.react"
 import { UserCircle } from "lucide-react"
 
 type Certificate = {
@@ -22,7 +22,7 @@ type Certificate = {
   motherName: string
   issuedBy: string
   issuedAt: string
-  picture?: string // Optional user image
+  picture?: string 
 }
 
 export default function BirthCertificateSearch() {
