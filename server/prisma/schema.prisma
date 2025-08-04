@@ -72,6 +72,6 @@ model Worker {
   password  String
   name      String
   role      String            @default("worker")
-  processedRequests ServiceRequest[] // One-to-many
+  processedRequests ServiceRequest[] 
 }
 

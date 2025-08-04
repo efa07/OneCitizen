@@ -1,5 +1,6 @@
 import dotenv from 'dotenv';
 dotenv.config();
+
 import { PrismaClient } from '@prisma/client';
 import express from 'express';
 import cors from 'cors';
@@ -12,6 +13,9 @@ import woredaLogin from "./routes/woredaLogin.js"
 import woredaDash from "./routes/woredaDashboard.js"
 import woredaRequest from "./routes/woredaRequest.js"
 import requestStatus from "./routes/status.js"
+import workDone from "./routes/woredaWordDone.js"
+import authWoreda from "./routes/authWoreda.js"
+
 import path from 'path';
 import { fileURLToPath } from 'url';
 import { dirname } from 'path';
@@ -30,6 +34,7 @@ app.use(cors(
         credentials: true
     }
 ));
+
 app.use(express.json({ limit: '10mb' }));
 app.use(express.urlencoded({ extended: true, limit: '10mb' }));
 app.use('/uploads', express.static(path.join(__dirname, 'uploads')))
@@ -42,6 +47,8 @@ app.use("/api/woreda/login",woredaLogin)
 app.use("/api/woreda/dashboard",woredaDash)
 app.use("/api/woreda",woredaRequest)
 app.use("/api/userRequest/status",requestStatus)
+app.use("/api/worker-stats",workDone)
+app.use("/api/create/woreda",authWoreda)
 
 const PORT = process.env.PORT || 5000;
 app.listen(PORT, () => console.log(`Server running on port ${PORT}`));

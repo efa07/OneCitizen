@@ -10,7 +10,7 @@ import {
   Clock,
 } from "lucide-react"
 
-type RequestStatus = "pending" | "approved" | "rejected" | "all"
+type RequestStatus = "pending" | "COMPLETED" | "rejected" | "all"
 
 interface ServiceRequest {
   id: string
@@ -28,17 +28,25 @@ interface UserInfo {
 
 const statusColorMap: Record<RequestStatus, string> = {
   pending: "bg-yellow-100 text-yellow-800 ring-yellow-500/20",
-  approved: "bg-green-200 text-green-900 ring-green-600/20",
+  COMPLETED: "bg-green-200 text-green-900 ring-green-600/20",
   rejected: "bg-red-100 text-red-800 ring-red-500/20",
   all: "bg-gray-100 text-gray-800 ring-gray-500/20",
 }
 
 const statusIconMap: Record<RequestStatus, JSX.Element> = {
   pending: <Clock className="h-5 w-5 text-yellow-500" />,
-  approved: <CheckCircle className="h-5 w-5 text-green-600" />,
+  COMPLETED: <CheckCircle className="h-5 w-5 text-green-600" />,
   rejected: <AlertTriangle className="h-5 w-5 text-red-500" />,
   all: <Filter className="h-5 w-5 text-gray-500" />,
 }
+
+// to shouw request.reson
+const truncateText = (text: string, maxWords: number): string => {
+  if (!text) return '';
+  const words = text.trim().split(/\s+/);
+  if (words.length <= maxWords) return text;
+  return words.slice(0, maxWords).join(' ') + '...';
+};
 
 export default function ServiceRequestStatus() {
   const [requests, setRequests] = useState<ServiceRequest[]>([])
@@ -50,10 +58,10 @@ export default function ServiceRequestStatus() {
   const userInfo: UserInfo | null = userInfoRaw ? JSON.parse(userInfoRaw) : null
   const email = userInfo?.email ?? null
 
-  // Calculate counts for each status
+  // calculat counts for each status
   const statusCounts = {
     pending: requests.filter((req) => req.status === "pending").length,
-    approved: requests.filter((req) => req.status === "approved").length,
+    COMPLETED: requests.filter((req) => req.status === "COMPLETED").length,
     rejected: requests.filter((req) => req.status === "rejected").length,
   }
 
@@ -116,8 +124,8 @@ export default function ServiceRequestStatus() {
         <div className="flex items-center gap-3 p-3 rounded-md bg-green-50">
           <CheckCircle className="h-6 w-6 text-green-600" />
           <div>
-            <p className="text-sm text-green-800">Approved</p>
-            <p className="text-lg font-semibold text-green-900">{statusCounts.approved}</p>
+            <p className="text-sm text-green-800">Complted</p>
+            <p className="text-lg font-semibold text-green-900">{statusCounts.COMPLETED}</p>
           </div>
         </div>
         <div className="flex items-center gap-3 p-3 rounded-md bg-red-50">
@@ -149,18 +157,18 @@ export default function ServiceRequestStatus() {
                     className={`px-3 py-1 rounded-full text-sm font-medium flex items-center gap-2 ${statusColor} ring-1`}
                   >
                     {statusIcon}
-                    {status.toUpperCase()}
+                    
                   </span>
                 </div>
                 <div className="space-y-4">
                   <div>
-                    <p className="text-sm text-gray-500 font-medium">Reason</p>
-                    <p className="text-gray-700">{request.reason}</p>
+                    <p className="text-sm text-gray-700 font-medium">Reason</p>
+                    <p className="text-gray-400">{truncateText(request.reason, 5)}</p>
                   </div>
                   {request.responseNote && (
                     <div>
                       <p className="text-sm text-gray-500 font-medium">Response Note</p>
-                      <p className="text-gray-700">{request.responseNote}</p>
+                      <p className="text-gray-400">{request.responseNote}</p>
                     </div>
                   )}
                   <p className="text-xs text-gray-400">

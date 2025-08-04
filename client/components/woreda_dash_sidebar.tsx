@@ -37,13 +37,13 @@ const data = {
   navMain: [
     {
       title: "Service Requests",
-      url: "#",
+      url: "/woreda/dashboard",
       icon: ClipboardList,
       isActive: true,
       items: [
         {
           title: "Pending Requests",
-          url: "/woreda/requests/pending",
+          url: "/woreda/dashboard",
         },
         {
           title: "Approved Requests",
@@ -77,7 +77,7 @@ const data = {
       items: [
         {
           title: "Service Statistics",
-          url: "/woreda/reports/statistics",
+          url: "/woreda/dashboard/status",
         },
         {
           title: "Citizen Insights",

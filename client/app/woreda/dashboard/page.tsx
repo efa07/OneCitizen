@@ -2,17 +2,16 @@
 
 import React, { useEffect, useState } from "react"
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card"
-import { Loader2, FileText, Bell, FileUp } from "lucide-react"
+import { Loader2, FileText } from "lucide-react"
 import { toast } from "sonner"
 import { useRouter } from "next/navigation"
-import { ScrollArea } from "@/components/ui/scroll-area"
 import { Button } from "@/components/ui/button"
 import { Textarea } from "@/components/ui/textarea"
 import { Input } from "@/components/ui/input"
 import { Separator } from "@/components/ui/separator"
 
 type DashboardData = {
-  message: string
+  name: string
   data: {
     notifications: string[]
     pendingRequests: any[]
@@ -66,7 +65,7 @@ export default function WoredaDashboardPage() {
     <div className="p-6 max-w-6xl mx-auto grid grid-cols-1 lg:grid-cols-3 gap-6">
       <Card className="lg:col-span-3 shadow-lg">
         <CardHeader>
-          <CardTitle className="text-2xl">👋 {data?.message}</CardTitle>
+          <CardTitle className="text-2xl">👋 {data?.name}</CardTitle>
         </CardHeader>
         <CardContent className="text-muted-foreground">
           <p>Welcome back. You can manage service requests, respond to citizens, and upload results here.</p>
