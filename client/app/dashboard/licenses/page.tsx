@@ -12,6 +12,7 @@ const licenseServices = [
     description: "View, renew, or apply for your driving license.",
     icon: <Car className="w-6 h-6 text-primary" />,
     slug: "drivers-license",
+    path: "/dashboard/licenses/driver-licenses/DriversLicense"
   },
   {
     title: "Business License",
@@ -46,7 +47,7 @@ export default function LicensesPage() {
             </CardHeader>
             <CardContent>
               <p className="text-sm text-muted-foreground mb-4">{service.description}</p>
-              <Button onClick={() => router.push(`/dashboard/licenses/${service.slug}`)}>
+              <Button onClick={() => router.push(service.path ||`/dashboard/licenses/${service.slug}`)}>
                 Access
               </Button>
             </CardContent>

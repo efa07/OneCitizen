@@ -1,9 +1,8 @@
 "use client"
 
-import React, { useReducer } from "react"
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card"
 import { Button } from "@/components/ui/button"
-import { Heart, UserPlus, Cross, BookUser } from "lucide-react"
+import { Heart, UserPlus, Cross } from "lucide-react"
 import { useRouter } from "next/navigation"
 
 const vitalRecords = [

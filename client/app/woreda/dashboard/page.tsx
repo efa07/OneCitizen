@@ -52,6 +52,7 @@ export default function WoredaDashboardPage() {
   useEffect(() => {
     fetchData()
   }, [])
+  console.log(data)
 
   if (loading) {
     return (
@@ -65,7 +66,7 @@ export default function WoredaDashboardPage() {
     <div className="p-6 max-w-6xl mx-auto grid grid-cols-1 lg:grid-cols-3 gap-6">
       <Card className="lg:col-span-3 shadow-lg">
         <CardHeader>
-          <CardTitle className="text-2xl">👋 {data?.name}</CardTitle>
+          <CardTitle className="text-2xl">Welcome to your workspace </CardTitle>
         </CardHeader>
         <CardContent className="text-muted-foreground">
           <p>Welcome back. You can manage service requests, respond to citizens, and upload results here.</p>
@@ -113,8 +114,6 @@ export default function WoredaDashboardPage() {
     )}
   </CardContent>
 </Card>
-
-
       {selectedRequest && (
         <Card className="lg:col-span-3 shadow-xl">
           <CardHeader>

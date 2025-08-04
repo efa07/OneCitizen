@@ -15,6 +15,7 @@ import woredaRequest from "./routes/woredaRequest.js"
 import requestStatus from "./routes/status.js"
 import workDone from "./routes/woredaWordDone.js"
 import authWoreda from "./routes/authWoreda.js"
+import birthCertificateRoutes from "./routes/birthCertificate.js"
 
 import path from 'path';
 import { fileURLToPath } from 'url';
@@ -49,6 +50,8 @@ app.use("/api/woreda",woredaRequest)
 app.use("/api/userRequest/status",requestStatus)
 app.use("/api/worker-stats",workDone)
 app.use("/api/create/woreda",authWoreda)
+app.use("/api/birth-certificate", birthCertificateRoutes)
+
 
 const PORT = process.env.PORT || 5000;
 app.listen(PORT, () => console.log(`Server running on port ${PORT}`));
